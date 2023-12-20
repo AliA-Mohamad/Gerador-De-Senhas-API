@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Back", "Back", "{FE324B81-72AF-40A1-8C87-C5EFB4ABE78A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Front", "Front", "{4BE62B49-3C88-4624-A231-6FBB11440751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{B63E47C0-8A76-4F29-AE26-0C24786A240D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site", "WebApplication1\Site.csproj", "{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B63E47C0-8A76-4F29-AE26-0C24786A240D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B63E47C0-8A76-4F29-AE26-0C24786A240D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B63E47C0-8A76-4F29-AE26-0C24786A240D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B63E47C0-8A76-4F29-AE26-0C24786A240D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B63E47C0-8A76-4F29-AE26-0C24786A240D} = {FE324B81-72AF-40A1-8C87-C5EFB4ABE78A}
+		{C9B6427B-0B3F-4E33-BFFC-95093DAF7ACB} = {4BE62B49-3C88-4624-A231-6FBB11440751}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF2E5A59-2075-43EF-869F-9A7344D422E4}
+	EndGlobalSection
+EndGlobal
