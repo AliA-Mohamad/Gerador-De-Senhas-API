@@ -9,8 +9,8 @@ public class SenhasGeradas
     [ForeignKey("Usuario")]
     public int IdUsuario { get; set; }
 
-    public required string Identificador { get; set; }
+    public  string Identificador { get; set; }
 
-    public required string Senha { get; set; }
+    public string Senha { get; set; }
 
 }
