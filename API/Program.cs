@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +18,9 @@ builder.Services.AddScoped<IPasswordService, PasswordService>();
 // Conexão com o banco de dados
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// autenticação JWT usando o método de extensão
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 

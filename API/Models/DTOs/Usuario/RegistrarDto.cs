@@ -1,6 +1,6 @@
-﻿namespace API.Models.DTOs;
+﻿namespace API.Models.DTOs.Usuario;
 
-public class UsuarioDto
+public class RegistrarDto
 {
     public required string Nome { get; set; }
 
