@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FirebaseAdmin.Auth;
-using API.Models;
+﻿using API.Interfaces;
+using API.Services;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace API.Controllers;
 
@@ -8,26 +9,10 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class UsuarioController : Controller
 {
-    [HttpPost]
-    [Route("create-user")]
-    public async Task<IActionResult> CreateUser([FromBody] Usuario request)
+    private readonly IPasswordService _passwordService;
+    UsuarioController(IPasswordService passwordService)
     {
-        try
-        {
-            var userRecordArgs = new UserRecordArgs
-            {
-                DisplayName = request.Nome,
-                Email = request.Email,
-                Password = request.Senha,
-            };
-
-            var userRecord = await FirebaseAuth.DefaultInstance.CreateUserAsync(userRecordArgs);
-            return Ok(new { UserId = userRecord.Uid });
-        }
-        catch (Exception ex)
-        {
-            // Tratar exceções (e.g., usuário já existe, problema de rede)
-            return BadRequest(ex.Message);
-        }
+        _passwordService = passwordService;
     }
+
 }
