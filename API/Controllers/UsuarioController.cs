@@ -60,4 +60,19 @@ public class UsuarioController : Controller
 
         return Ok("Senha alterada com sucesso.");
     }
+
+    [HttpDelete("Deletar/{id}")]
+    public async Task<IActionResult> DeletarUsuario(int id)
+    {
+        var usuario = await _context.Usuarios.FindAsync(id);
+        if (usuario == null)
+        {
+            return NotFound("Usuário não encontrado.");
+        }
+
+        _context.Usuarios.Remove(usuario);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
