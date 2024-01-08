@@ -69,7 +69,7 @@ public class UsuarioController : Controller
     {
         var user = _db.Usuarios.FirstOrDefault(u => u.Email == loginDto.Email);
 
-        if (user == null || !_passwordService.VerificarSenha(user.Senha, loginDto.Senha)) 
+        if (user == null || !_passwordService.VerificarSenha(loginDto.Senha, user.Senha))
         {
             return Unauthorized("Credenciais inválidas.");
         }
@@ -78,7 +78,6 @@ public class UsuarioController : Controller
         return Ok(new { Token = token });
     }
 
-    []
     [HttpDelete("Deletar/{id}")]
     public async Task<IActionResult> DeletarUsuario(int id)
     {
