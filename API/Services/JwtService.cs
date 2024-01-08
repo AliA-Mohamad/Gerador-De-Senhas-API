@@ -1,31 +1,41 @@
-﻿using API.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using API.Interfaces;
+using API.Models;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
-namespace API.Services;
-
-public static class JwtService
+namespace API.Services
 {
-    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public class JwtService : IJwtService
     {
-        var jwtSettings = new JwtSettings();
-        configuration.Bind("Jwt", jwtSettings);
+        private readonly IConfiguration _configuration;
 
-        services.AddSingleton(jwtSettings);
+        public JwtService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
+        public string GenerateJwtToken(Usuario user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
             {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                };
-            });
+                new Claim(JwtRegisteredClaimNames.Sub, user.Nome),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("uid", user.Id.ToString())
+            };
 
-        return services;
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JwtConfig:Issuer"],
+                audience: _configuration["JwtConfig:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(3),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }
